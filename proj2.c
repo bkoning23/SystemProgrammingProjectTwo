@@ -4,6 +4,7 @@
 #include <stdio.h>
 #define MIN_PER_DAY 480
 #include "queue.h"
+#include <time.h>
 
 double expdist(double mean){
 	double r = rand();
@@ -18,7 +19,7 @@ void addToLine(int custCount, int idStart, int time, queue *q){
 		d.arriveTime = time;
 		enqueue(d, q);
 	}
-	printf("Added %d customers to the line\n", custCount);
+	printf("%d customers arrived.\n", custCount);
 }
 
 
@@ -27,7 +28,7 @@ void addToLine(int custCount, int idStart, int time, queue *q){
 void simulation(int numOfTellers){
 
 	int tellers[numOfTellers];
-	int time = 0;
+	int currentTime = 0;
 	int count = 0;
 	queue line;
 
@@ -36,27 +37,55 @@ void simulation(int numOfTellers){
 	for(int i = 0; i < numOfTellers; i++)
 		tellers[i] = 0;
 	
-	while(time < MIN_PER_DAY){
-		int newCust = (rand() % 100) + 1;
-		
-		if(newCust < 16)
-			addToLine(0, count, time, &line);
-		else if(newCust < 35)
-			addToLine(1, count, time, &line);
-		else if(newCust < 60)
-			addToLine(2, count, time, &line);
-		else if(newCust < 70)
-			addToLine(3, count, time, &line);
-		else
-			addToLine(4, count, time, &line);	
+	srand((unsigned int)time(NULL));
+	
+	while(currentTime < MIN_PER_DAY){
+		printf("\nStart minute %d\n", currentTime);
 
+		int newCustRand = (rand() % 100) + 1;
+		int newCust = 0;
+		
+		if(newCustRand < 16)
+			newCust = 0;	
+		else if(newCustRand < 35)
+			newCust = 1;
+		else if(newCustRand < 60)
+			newCustRand = 2;	
+		else if(newCustRand < 70)
+			newCust = 3;
+		else
+			newCust = 4;	
+		
+		addToLine(newCust, count, currentTime, &line);
+		count = count + newCust;
+		printf("%d Customers now in line.\n", line.cnt);
+		/*
 		if(!empty(&line)){
-			data temp = dequeue(&line);
+			data temp = front(&line);
 
 			printf("Next in Line: ID: %d, Arrival %d\n", temp.id, temp.arriveTime); 		
 		}
+		*/
+		for(int i = 0; i < numOfTellers; i++){
+			if(tellers[i] != 0)
+				tellers[i] = tellers[i] - 1;
+			else{
+				if(!empty(&line)){
+					data temp = dequeue(&line);
+					int timeInLine = currentTime - temp.arriveTime;
+					int timeToServe = (int)ceil(expdist(AVG_SERVICE));
+					tellers[i] = timeToServe;
+					printf("Teller %d is now helping customer %d. This will take %d minutes.\n", i, temp.id, timeToServe);
+				}
+				else{
+					printf("Teller %d is open. No customers in line.\n", i);
+				}
+			}
+		}
 
-		time++;
+
+
+		currentTime++;
 	}
 	
 
@@ -68,7 +97,6 @@ void simulation(int numOfTellers){
 int main(){
 	double t;
 	t = expdist(AVG_SERVICE);
-	simulation(4);
+	simulation(10);
 }
-
 
