@@ -1,3 +1,8 @@
+//Brendan Koning
+//
+//This implements a linked list queue.
+
+
 #include "queue.h"
 
 void initialize(queue *q)

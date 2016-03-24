@@ -1,3 +1,8 @@
+//Brendan Koning
+//
+//Processes and stores statistics relating to a simulation.
+
+
 #include "stats.h"
 
 void initStats(stats *s, int tellerCount)

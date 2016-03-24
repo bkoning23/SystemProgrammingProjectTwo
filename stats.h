@@ -1,3 +1,7 @@
+//Brendan Koning
+//
+//Provides type definitions and function prototypes for stat collector.
+
 #include <stdio.h>
 
 struct stats{

@@ -1,3 +1,7 @@
+//Brendan Koning
+//Project: Event-Driven Simulation
+
+
 #include <stdlib.h>
 #include <math.h>
 #define AVG_SERVICE 2.0
@@ -7,6 +11,7 @@
 #include <time.h>
 #include "stats.h"
 #include <string.h>
+
 double expdist(double mean){
 	double r = rand();
 	r /= RAND_MAX;

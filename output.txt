@@ -1,0 +1,36 @@
+./simulation
+For 4 tellers:
+Customers Served: 552
+Average Wait: 120.447464 minutes
+Maximum Wait: 236 minutes
+Average Line Length: 259.143750
+Maximum Line Length: 510
+
+For 5 tellers:
+Customers Served: 663
+Average Wait: 88.036199 minutes
+Maximum Wait: 184 minutes
+Average Line Length: 200.247917
+Maximum Line Length: 425
+
+For 6 tellers:
+Customers Served: 803
+Average Wait: 63.977584 minutes
+Maximum Wait: 129 minutes
+Average Line Length: 147.750000
+Maximum Line Length: 294
+
+For 7 tellers:
+Customers Served: 942
+Average Wait: 33.340764 minutes
+Maximum Wait: 76 minutes
+Average Line Length: 79.368750
+Maximum Line Length: 179
+
+For 8 tellers:
+Customers Served: 1064
+Average Wait: 10.729323 minutes
+Maximum Wait: 26 minutes
+Average Line Length: 24.627083
+Maximum Line Length: 59
+

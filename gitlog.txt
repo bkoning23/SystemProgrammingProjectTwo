@@ -1,0 +1,29 @@
+commit 636ff2d7c4640bdc636df165a938ac6566a94870
+Author: Brendan Koning <koningb@localhost.localdomain>
+Date:   Wed Mar 23 23:33:58 2016 -0400
+
+    Implemented reading the proj2.dat file
+
+commit 8de8b0291f561a20fd9f12f9a50e3b62969ab065
+Author: Brendan Koning <koningb@localhost.localdomain>
+Date:   Tue Mar 22 22:01:04 2016 -0400
+
+    Minor cleanup
+
+commit 106ca6603d9404f1c7c796664215516939c15a6a
+Author: Brendan Koning <koningb@localhost.localdomain>
+Date:   Tue Mar 22 21:51:37 2016 -0400
+
+    Roughly done, everything implemented and appears to work fine
+
+commit c82119403bc6d7c94c34144b40eb628f18bbd74d
+Author: Brendan Koning <koningb@localhost.localdomain>
+Date:   Tue Mar 22 19:08:13 2016 -0400
+
+    Implemented minute by minute. Customers arrive and teller service time calculated. Needs to have stats.h added.
+
+commit aab3425b16cda5f2ae52f403908e491bba55a7e5
+Author: Brendan Koning <koningb@localhost.localdomain>
+Date:   Tue Mar 22 18:25:52 2016 -0400
+
+    Started. Queue implemented and customers coming in per minute implemented

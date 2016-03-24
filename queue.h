@@ -1,3 +1,8 @@
+//Brendan Koning
+//
+//Provides type definitions and function prototypes for linked list queue.
+
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
