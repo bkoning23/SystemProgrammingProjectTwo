@@ -36,16 +36,19 @@ double getAvgLength(stats *s)
 
 }
 
-
+//Stores information about the current minute such as line length
+//Used to determine max line, avg line
 void processMinute(stats *s, int lineLength)
 {
 
 	s -> lengthSum = s -> lengthSum + lineLength;
 	if(s -> maximumLength < lineLength)
 		s -> maximumLength = lineLength;
+	
 
 }
-
+//Stores information about a person when they go to a teller
+//This data is used to determine avg and max wait time
 void processPerson(stats *s, int waitTime)
 {
 

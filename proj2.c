@@ -6,7 +6,7 @@
 #include "queue.h"
 #include <time.h>
 #include "stats.h"
-
+#include <string.h>
 double expdist(double mean){
 	double r = rand();
 	r /= RAND_MAX;
@@ -36,27 +36,46 @@ void simulation(int numOfTellers){
 	initialize(&line);
 	initStats(&s, numOfTellers);	
 	
+
+	char buf[20];
+	char * value, *value2;
 	for(int i = 0; i < numOfTellers; i++)
 		tellers[i] = 0;
 	
 	srand((unsigned int)time(NULL));
 	
+	char* settings[5][2];
+	FILE* fp;
+	fp = fopen("proj2.dat", "r");
+	int counter = 0;
+	while(fgets(buf, sizeof(buf), fp) != NULL){
+		
+		char * val1 = strtok(buf, "\t ");
+		char * val2 = strtok(NULL, " ");
+	
+		settings[counter][0] = malloc(strlen(val1)+1);
+		settings[counter][1] = malloc(strlen(val2)+1);
+		strcpy(settings[counter][0], val1);
+		strcpy(settings[counter][1], val2);		
+		counter++;
+	}
+
+	
+	
 	while(currentTime < MIN_PER_DAY){
 		//Determines how many customers will arrive at this minute
 		int newCustRand = (rand() % 100) + 1;
 		int newCust = 0;
+		counter = 0;
+		while(newCustRand > 0){
+			int temp = newCustRand - atoi(settings[counter][1]);
+			if(temp <= 0){
+				newCust = atoi(settings[counter][0]);
+			}
+			newCustRand = temp;
+			counter++;
+		}
 		
-		if(newCustRand < 16)
-			newCust = 0;	
-		else if(newCustRand < 35)
-			newCust = 1;
-		else if(newCustRand < 60)
-			newCustRand = 2;	
-		else if(newCustRand < 70)
-			newCust = 3;
-		else
-			newCust = 4;
-	
 		addToLine(newCust, currentId, currentTime, &line);
 		currentId = currentId + newCust;
 		for(int i = 0; i < numOfTellers; i++){
